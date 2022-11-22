@@ -26,7 +26,7 @@ public class Main {
         // Проверка ввода данных
         if (checkUserInput.checkLearnExpression() & checkUserInput.checkMathSymbol()) {
             if (checkUserInput.checkNumbersExpressionArabic()) {
-                if ((Integer.parseInt(expresToList[0]) > 10) | (Integer.parseInt(expresToList[2]) >= 10)) {
+                if ((Integer.parseInt(expresToList[0]) > 10) | (Integer.parseInt(expresToList[2]) > 10)) {
                     throw new ExpressionException("Используются только числа меньше или равные 10");
                 }
                 return checkUserInput.calculationArabicNumbers(expresToList[0], expresToList[2],
@@ -34,17 +34,17 @@ public class Main {
             } else if (checkUserInput.checkNumberExpressionRoman()) {
                 String numberOne = convetNum.convertedRomanToArabic(expresToList[0]);
                 String numberTwo = convetNum.convertedRomanToArabic(expresToList[2]);
-                if ((Integer.parseInt(numberOne) > 10) | (Integer.parseInt(numberTwo) >= 10)){
+                if ((Integer.parseInt(numberOne) > 10) | (Integer.parseInt(numberTwo) > 10)){
                     throw new ExpressionException("Используются только числа меньше или равные X");
                 }
                 String resultOperate = checkUserInput.calculationArabicNumbers(numberOne, numberTwo, expresToList[1]);
                 if (Integer.parseInt(resultOperate) <= 0) {
-                    throw new ExpressionException("Ошибка при решении примера: В римских числах нет 0 и отрицательных " +
-                            "чисел");
+                    throw new ExpressionException("Ошибка при решении примера: В римских числах нет 0 и отрицательных" +
+                            "чисел.");
                 }
                 return convetNum.convertedArabianToRoman(resultOperate);
-            } else throw new ExpressionException("Ошибка ввода данных: В примере нельзя одновременно использовать и " +
-                    "арабские и римские числа.");
+            } else throw new ExpressionException("Ошибка ввода данных: В примере могут быть использованы или только " +
+                    "арабские числа, или только римские числа (комбинация заглавных латинских букв I, V, X).");
         }
         return "0";
     }

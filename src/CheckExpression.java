@@ -21,19 +21,22 @@ public class CheckExpression {
         return true;
     }
     /**
-     * Метод проверяет какая математическая операция используется в примере. При неверной операции вернется false.
+     * Метод проверяет какая арифметическая операция используется в примере. При неверной операции вернется false.
      */
     boolean checkMathSymbol() throws ExpressionException {
 
         if (!symbols.contains(expressionListUser[1])) {
-            throw new ExpressionException("Ошибка ввода данных: Введена неверная математическая операция.");
+            throw new ExpressionException("Ошибка ввода данных: Введена неверная арифметическая операция.");
         }
         return true;
     }
     /**
      * Метод првоеряет арабская система цыфр используется в выражении.
      */
-    boolean checkNumbersExpressionArabic() {
+    boolean checkNumbersExpressionArabic() throws ExpressionException {
+        if (expressionListUser[0].contains(".") |expressionListUser[2].contains(".")) {
+            throw new ExpressionException("В примере могут применяться только целые числа.");
+        }
         return ((Character.isDigit(expressionListUser[0].codePointAt(0)) &
                 Character.isDigit(expressionListUser[2].codePointAt(0))));
     }
